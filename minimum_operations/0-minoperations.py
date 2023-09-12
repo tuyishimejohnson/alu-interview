@@ -1,25 +1,39 @@
 #!/usr/bin/python3
+"""
+minOperations module
+
+This module provides a method to calculate the fewest
+number of operations required to obtain a desired count
+of H characters in a file, given the operations Copy All and Paste.
+
+"""
+import math
 
 
 def minOperations(n):
-    if n < 2:
-        return n
+    """
+    Calculates the fewest number of operations required to
+    obtain exactly n H characters in the file.
 
-    dp = [0] * (n + 1)
+    Parameters:
+        n (int): The desired count of H characters.
 
-    for i in range(2, n + 1):
-        dp[i] = float("inf")
-        for j in range(1, i):
-            if i % j == 0:
-                dp[i] = min(dp[i], dp[j] + i // j)
+    Returns:
+        int: The minimum number of operations required.
+        If n is impossible to achieve or invalid(negative), returns 0.
 
-        return dp[n] if dp[n] != float('inf') else 0
+    """
+    if n <= 0:
+        return 0
 
-n = 4
+    operations = 0
 
-print("Min # of operations to reach {} char: {}".format(n, minOperations(n)))
+    for i in range(2, int(math.sqrt(n)) + 1):
+        while n % i == 0:
+            operations += i
+            n = n // i
 
-n = 12
+    if n > 1:
+        operations += n
 
-print("Min # of operations to reach {} char: {}".format(n, minOperations(n)))
-
+    return operations
