@@ -5,8 +5,10 @@ import math
 
 def pascal_triangle(n):
     '''n will always be an integer '''
-    my_list = int(n)
-    list_length = len(my_list)
-    number = math.factorial(my_list)/math.factorial(list_length)*math.factorial(my_list - list_length)
-    return number
+    for num in range(n):
+        if n <= 0:
+            print([])
+        print(' '*(n-num), end='')
+        print()
+        print(' '.join(map(str, str(11 ** num))))
 
