@@ -2,9 +2,8 @@
 
 ''' Function that creates Pascal Triangle '''
 
+
 def pascal_triangle(n):
-
-
     '''returning empty list if n is less than or equal to 0'''
     if n <= 0:
         return []
